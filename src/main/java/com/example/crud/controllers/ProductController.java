@@ -1,5 +1,6 @@
 package com.example.crud.controllers;
 
+import com.example.crud.domain.product.Product;
 import com.example.crud.domain.product.ProductRepository;
 import com.example.crud.domain.product.RequestProduct;
 import jakarta.validation.Valid;
@@ -26,6 +27,8 @@ public class ProductController {
 
     @PostMapping
     public ResponseEntity registerProduct(@RequestBody @Valid RequestProduct data) {
+        Product newProduct = new Product(data);
+        repository.save(newProduct);
         return ResponseEntity.ok().build();
     }
 }
